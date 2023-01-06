@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: entity_states
+    description: Entity State model, adding valid_from and valid_to timestamp fields.
+    columns:
+      - name: entity_id
+        description: HASS's unique string identifier for the associated entity.
+        tests:
+          - not_null
+
+      - name: entity_domain
+        description: Domain of the associated entity.
+        tests:
+          - not_null
+
+      - name: entity_name
+        description: Computer-readable name of the associated entity.
+        tests:
+          - not_null
+
+      - name: friendly_name
+        description: Human-readable name of the associated entity.
+        tests:
+          - not_null
+
+      - name: state
+        description: String state of the associated entity.
+        tests:
+          - not_null
+
+      - name: attributes
+        description: JSON dictionary of attributes of the associated entity.
+        tests:
+          - not_null
+
+      - name: context
+        description: JSON disctionary of context of the associated entity.
+        tests:
+          - not_null
+
+      - name: last_changed
+        description: Timestamp of the time that the state of the entity was last changed. (TO BE VERIFIED)
+        tests:
+          - not_null
+
+      - name: valid_from
+        description: Timestamp of the start of validity for this state.
+        tests:
+          - not_null
+
+      - name: valid_to
+        description: Timestamp of the end of validity for this state. This field will be null if the entity state is the current entity state.

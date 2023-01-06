@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_hass__events
+    description: Cleaned HomeAssistant events from the HASS -> BigQuery integration.
+    columns:
+      - name: entity_id
+        description: HASS's unique string identifier for the associated entity.
+        tests:
+          - not_null
+
+      - name: entity_domain
+        description: Domain of the associated entity.
+        tests:
+          - not_null
+
+      - name: entity_name
+        description: Computer-readable name of the associated entity.
+        tests:
+          - not_null
+
+      - name: friendly_name
+        description: Human-readable name of the associated entity.
+        tests:
+          - not_null
+
+      - name: state
+        description: State of the associated entity, set by the emitted event.
+        tests:
+          - not_null
+
+      - name: attributes
+        description: JSON dictionary of attributes of the associated entity.
+        tests:
+          - not_null
+
+      - name: context
+        description: JSON disctionary of context of the associated entity.
+        tests:
+          - not_null
+
+      - name: last_changed
+        description: Timestamp of the time that the state of the entity was last changed. (TO BE VERIFIED)
+        tests:
+          - not_null
+
+      - name: last_updated
+        description: Timestamp of the event emission. The state might not have changed, but the attributes on the entity might have. (TO BE VERIFIED)
+        tests:
+          - not_null

@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ var('database', target.database) }}"
+    schema: "{{ var('hass_raw_schema') }}"
+
+    tables:
+      - name: "{{ var('hass_raw_events_table') }}"
+        columns:
+          - name: entity_id
+            tests:
+              - not_null
+
+          - name: state
+            tests:
+              - not_null
+
+          - name: attributes
+
+          - name: last_changed
+
+          - name: last_updated
+
+          - name: context
