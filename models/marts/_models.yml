@@ -51,3 +51,47 @@ models:
 
       - name: valid_to
         description: Timestamp of the end of validity for this state. This field will be null if the entity state is the current entity state.
+
+
+  - name: climate_states
+    description: Climate State model for all climate entities in Home Assistant.
+    columns:
+      - name: thermostat_name
+        description: The human-readable name of the thermostat.
+        tests:
+          - not_null
+
+      - name: hvac_action
+        description: Current HVAC action of the thermostat.
+        tests:
+          - not_null
+          - accepted_values:
+              values: [ "Off", "Idle", "Fan", "Heating", "Cooling", "Drying" ]
+
+      - name: climate_mode
+        description: |
+          Current climate mode of the thermostat. Usually something like "Sleep", "Away", "Home",
+          "Vacation", etc.
+
+      - name: target_temperature
+        description: |
+          Current target temperature set on the thermostat. This is what the thermostat is heating
+          up to or cooling down to.
+        tests:
+          - not_null
+
+      - name: current_temperature
+        description: Current temperature, measured by a sensor in the thermostat.
+
+      - name: current_humidity
+        description: Current humidity, measured by a sensor in the thermostat.
+
+      - name: valid_from
+        description: Timestamp of the start of validity for this state.
+        tests:
+          - not_null
+
+      - name: valid_to
+        description: |
+          Timestamp of the end of validity for this state. This field will be null if the entity
+          state is the current entity state.
